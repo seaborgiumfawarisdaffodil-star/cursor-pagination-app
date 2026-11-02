@@ -1,0 +1,13 @@
+{
+  "name": "caseflow-cursor-release-review",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Synthetic TypeScript case-list pagination release assessment fixture",
+  "scripts": {
+    "start": "node dist/server.mjs",
+    "audit:all": "node tools/reconcile.mjs --filter all",
+    "audit:filtered": "node tools/reconcile.mjs --filter open"
+  },
+  "engines": { "node": ">=18" }
+}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Caseflow — Release Review</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo"><span class="logo-mark">C</span> Caseflow <span class="brand-suffix">/ Release review</span></div>
+    <span class="environment"><span class="dot"></span> Synthetic local fixture</span>
+  </header>
+  <main>
+    <div class="eyebrow">DATA INTEGRITY / PAGINATION</div>
+    <h1>Case list review</h1>
+    <p class="intro">Walk through an immutable case inventory. Inspect requests, cursors, and row ordering in browser developer tools.</p>
+    <section class="panel">
+      <div class="panel-header">
+        <div><h2>Cases</h2><div class="panel-sub">Sorted by created timestamp ↓, then case ID ↓</div></div>
+        <div class="badge">API · GET /api/cases</div>
+      </div>
+      <div class="filters">
+        <label for="status">Status</label>
+        <select id="status"><option value="all">All cases</option><option value="open">Open only</option></select>
+        <span class="filter-note">5 rows / page</span>
+        <button id="restart" class="subtle">Restart traversal</button>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Case ID</th><th>Summary</th><th>Status</th><th>Created at (UTC)</th><th>Queue</th></tr></thead>
+        <tbody id="caseRows"><tr><td colspan="5">Loading local cases…</td></tr></tbody>
+      </table></div>
+      <div class="pagination">
+        <div class="page-label"><strong id="pageNumber">Page 1</strong><span id="resultsCount">Loading</span></div>
+        <div class="page-buttons"><button class="subtle" id="previous" disabled>Previous</button><button id="next" disabled>Next page <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+    <section class="inspector">
+      <div><div class="eyebrow">REQUEST INSPECTOR</div><h3>Current page context</h3></div>
+      <dl><div><dt>Requested cursor</dt><dd id="requestCursor">(first page)</dd></div>
+          <div><dt>Continuation cursor</dt><dd id="nextCursor">—</dd></div>
+          <div><dt>Page record IDs</dt><dd id="pageIds">—</dd></div></dl>
+      <p>Use Brave DevTools → Network → <strong>cases</strong> to inspect the full request and JSON response. The cursor is an opaque token and should be evaluated against the pagination contract.</p>
+    </section>
+    <footer>CASEFLOW / RELEASE CANDIDATE <span>LOCAL DATA · NO EXTERNAL REQUESTS</span></footer>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>

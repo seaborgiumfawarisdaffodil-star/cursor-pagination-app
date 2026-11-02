@@ -1,0 +1,4 @@
+node_modules/
+evidence/*.json
+evidence/*.txt
+.DS_Store
